@@ -1,0 +1,53 @@
+
+
+.sidenav-container {
+  height: 100%;
+  
+}
+
+.sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+
+
+}
+.uk-navbar-left{
+  padding-right: 500px;
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.uk-border-circle {
+  margin-left: 15px;
+}
+
+
+  
+.uk-fieldset {
+  text-align: right;
+  font-family: sans-serif;
+}
+
+.uk-input {
+  text-align: right;
+  font-family: sans-serif;
+}
+
+.uk-link-text {
+ 
+  text-decoration: underline;
+  font-family: sans-serif;
+  
+
+}
+
+.uk-card-header{
+  text-align: right;
+}
+
+.uk-border-circle {
+  margin-left: 20px;
+}

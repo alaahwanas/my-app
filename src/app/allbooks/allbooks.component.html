@@ -1,0 +1,131 @@
+<html dir="rtl">
+<div class="uk-padding">
+  <div class="uk-card uk-card-default uk-card-body">
+    <h3 class="uk-card-title">قائمة الكتب</h3>
+    <table class="uk-table uk-table-hover uk-table-divider">
+
+      <thead>
+        <tr>
+          <th>key</th>
+          <th>bookname</th>
+          <th>stage</th>
+          <th>class</th>
+          <th>donator</th>
+          <th>phone</th>
+          <th>email</th>
+          <th>province</th>
+          <th>actions</th>
+
+
+        </tr>
+      </thead>
+
+      <tbody>
+
+        <tr *ngFor="let item of itemArray">
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.$key}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.bookname}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.stage}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.class}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.donator}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.phone}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.email}}</td>
+          <td class="uk-table-link"><a class="uk-link-reset" href="#modal-close-default" uk-toggle (click)="moreInfo(item.$key)"></a>{{item.province}}</td>
+          <td>
+            <button class="uk-icon-button" uk-icon="pencil" uk-toggle="target: #modal-example" (click)="editform(item.$key)"></button>
+          </td>
+          <td><button class="uk-icon-button" uk-icon="trash" (click)="onDelete(item.$key)"></button></td>
+          <td><button class="uk-icon-button" uk-icon="comment"></button></td>
+
+
+          <div id="modal-example" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+              <fieldset class="uk-fieldset">
+
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="اسم الكتاب" name="bookname" [(ngModel)]="data.bookname">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="المرحلة" name="stage" [(ngModel)]="data.stage">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="الصف" name="class" [(ngModel)]="data.class">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="اسم المتبرع" name="donator" [(ngModel)]="data.donator">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="رقم الهاتف" name="phone" [(ngModel)]="data.phone">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="الايميل" name="email" [(ngModel)]="data.email">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="المحافظة" name="province" [(ngModel)]="data.province">
+                </div>
+
+
+
+              </fieldset>
+
+
+
+
+              <p class="uk-text-left">
+                <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+                <button class="uk-button uk-button-primary" type="button" (click)="onEdit(item.$key)">Save</button>
+              </p>
+            </div>
+          </div>
+
+
+
+
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+</div>
+
+
+<div id="modal-close-default" uk-modal>
+  <div class="uk-modal-dialog uk-modal-body">
+    <button class="uk-modal-close-default" type="button" uk-close></button>
+    <h2 class="uk-modal-title">{{data.bookname}}</h2>
+    <div class="card2">
+    <div class="uk-card uk-card-default">
+      <div class="uk-card-header">
+        <div class="uk-grid-small uk-flex-middle" uk-grid>
+          <div class="uk-width-auto">
+            <img class="uk-border-circle" width="40" height="40" src="assets\logo.jpg">
+          </div>
+          <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom"> المرحلة : {{data.stage}}</h3>
+            <h3 class="uk-card-title uk-margin-remove-bottom">الصف : {{data.class}}</h3>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      <div class="uk-card-body">
+        
+
+        <p> {{data.notes}}</p>
+      </div>
+      <div class="uk-card-footer">
+        <p>  اسم المتبرع : {{data.donator}}</p>
+        <p> رقم الهاتف : {{data.phone}}</p>
+        <p>{{data.email}} : لبريد الالكتروني </p>
+        <p>  المحافظة : {{data.province}}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+

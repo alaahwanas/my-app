@@ -1,0 +1,248 @@
+
+<html dir="rtl">
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer
+               class="sidenav"
+               fixedInViewport="true"
+               [attr.role]="isHandset ? 'dialog' : 'navigation'"
+               [mode]="(isHandset | async)!.matches ? 'over' : 'side'"
+               [opened]="!(isHandset | async)!.matches">
+    <mat-toolbar color="primary">
+      القائمة
+      <!-- <button mat-button position="end">Click me!</button> -->
+
+    </mat-toolbar>
+
+    <mat-nav-list>
+      <a mat-list-item href="home0">الصفحة الرئيسية</a>
+      <a mat-list-item href="donate">تبرع بكتاب</a>
+      <a mat-list-item href="allbooks">ابحث عن كتاب</a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()"
+              *ngIf="(isHandset | async)!.matches">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <img class="uk-border-circle" width="60" height="60" src="assets\logo.jpg">
+
+
+      <span>المنهج المدرسي لجميع المراحل الأبتدائية والمتوسطة والأعدادية</span>
+      <span class="spacer"></span>
+
+
+      <div *ngIf="!isLoggedIn">
+        <a mat-button href="#modal-sections" uk-toggle>دخول</a>
+        <div id="modal-sections" uk-modal>
+          <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-padding">
+
+              <fieldset class="uk-fieldset">
+
+                <legend class="uk-legend">الدخول</legend>
+
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="البريد الالكتروني" name="email" [(ngModel)]="email">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="كلمة السر" name="password" [(ngModel)]="password">
+                </div>
+                <span>لايوجد حساب  </span>
+                <a class="uk-link-text" href="#modal-sections2" uk-toggle> تسجيل</a>
+                <p uk-margin>
+                  <button class="uk-button uk-button-primary uk-modal-close" (click)="myLogin()">دخول</button>
+                </p>
+              </fieldset>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngIf="!isLoggedIn">
+        <a mat-button href="#modal-sections2" uk-toggle>تسجيل</a>
+        <div id="modal-sections2" uk-modal>
+          <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-padding">
+
+              <fieldset class="uk-fieldset">
+                <legend class="uk-legend">التسجيل</legend>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="البريد الالكتروني" name="email" [(ngModel)]="email">
+                </div>
+                <div class="uk-margin">
+                  <input class="uk-input" type="text" placeholder="كلمة السر" name="password" [(ngModel)]="password">
+                </div>
+                <span>لديك حساب  </span>
+                <a class="uk-link-text " href="#modal-sections" uk-toggle>دخول</a>
+                <p uk-margin>
+                  <button class="uk-button uk-button-primary uk-modal-close" uk-toggle="target: #modal-sections4" (click)="mySignup()">تسجبل</button>
+                </p>
+
+              </fieldset>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div *ngIf="isLoggedIn">
+        <a mat-button href="#modal-sections3" uk-toggle>حسابي</a>
+        <div id="modal-sections3" uk-modal>
+          <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-padding">
+
+              <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                  <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                      <img class="uk-border-circle" width="80" height="80" src="assets\personlogo.png">
+                    </div>
+                    <div class="uk-width-expand">
+                      <h3 class="uk-card-title uk-margin-remove-bottom">البريد الالكتروني : {{data.email}}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-card-body">
+                  <p>الاسم : {{data.donator}}</p>
+                  <p>رقم الهاتف : {{data.phone}}</p>
+                  <p>المحافظة : {{data.province}}</p>
+                  <p>الملاحظات : {{data.notes}}</p>
+
+                </div>
+                <p uk-margin>
+                  <button class="uk-button uk-button-primary uk-modal-close" uk-toggle="target: #modal-example" (click)="editform()">تعدبل</button>
+                </p>
+
+                <div class="uk-card-footer">
+                  <a href="#" class="uk-button uk-button-text">تبرعاتي</a>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div>
+        <div id="modal-sections4" uk-modal>
+          <div class="uk-modal-dialog">
+            <button class="uk-modal-close-default" type="button" uk-close></button>
+            <div class="uk-padding">
+
+              <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                  <div class="uk-grid-small uk-flex-middle" uk-grid>
+                    <div class="uk-width-auto">
+                      <img class="uk-border-circle" width="80" height="80" src="assets\personlogo.png">
+                    </div>
+                    <div class="uk-width-expand">
+                      <h3 class="uk-card-title uk-margin-remove-bottom">Email : {{email}}</h3>
+                    </div>
+                  </div>
+                </div>
+                <div class="uk-card-body">
+                  <div class="uk-padding">
+                    <div class="uk-card uk-card-default uk-card-body uk-padding">
+
+                      <fieldset class="uk-fieldset">
+
+                        <legend class="uk-legend">اضافة متبرع</legend>
+
+                        <div class="uk-margin">
+                          <input class="uk-input" type="text" placeholder="اسم المتبرع" name="donator" [(ngModel)]="data.donator">
+                        </div>
+                        <div class="uk-margin">
+                          <input class="uk-input" type="text" placeholder="رقم الهاتف" name="phone" [(ngModel)]="data.phone">
+                        </div>
+
+                        <div class="uk-margin">
+                          <input class="uk-input" type="text" placeholder="المحافظة" name="province" [(ngModel)]="data.province">
+                        </div>
+
+
+                        <div class="uk-margin">
+                          <textarea class="uk-textarea" rows="5" placeholder="الملاحظات" name="notes" [(ngModel)]="data.notes"></textarea>
+                        </div>
+
+                        <p uk-margin>
+                          <button class="uk-button uk-button-primary" uk-toggle="target: #modal-sections" (click)="insertUser()">اضف متبرع</button>
+                        </p>
+
+
+                      </fieldset>
+
+
+
+
+
+                    </div>
+
+                  </div>
+                </div>
+                <div class="uk-card-footer">
+                  <a href="#" class="uk-button uk-button-text">تبرعاتي</a>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <div *ngIf="isLoggedIn"> <a mat-button href="#" (click)="logout()">خروج</a></div>
+
+
+
+
+      <div id="modal-example" uk-modal>
+        <div class="uk-modal-dialog uk-modal-body">
+          <fieldset class="uk-fieldset">
+
+            <div class="uk-margin">
+              <input class="uk-input" type="text" placeholder="اسم المتبرع" name="donator" [(ngModel)]="data.donator">
+            </div>
+            <div class="uk-margin">
+              <input class="uk-input" type="text" placeholder="رقم الهاتف" name="phone" [(ngModel)]="data.phone">
+            </div>
+           
+            <div class="uk-margin">
+              <input class="uk-input" type="text" placeholder="المحافظة" name="province" [(ngModel)]="data.province">
+            </div>
+
+
+
+          </fieldset>
+
+
+
+
+          <p class="uk-text-left">
+            <button class="uk-button uk-button-default uk-modal-close" type="button">Cancel</button>
+            <button class="uk-button uk-button-primary" type="button" (click)="onEdit()">Save</button>
+          </p>
+        </div>
+      </div>
+    </mat-toolbar>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+

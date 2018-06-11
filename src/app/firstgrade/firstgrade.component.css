@@ -1,0 +1,13 @@
+.uk-card {
+
+  padding-right: 100px;
+
+}
+p {
+  font-size: 40px;
+  text-align: right;
+  padding-right: 200px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: primary;
+}
